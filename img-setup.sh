@@ -1,4 +1,4 @@
-#wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 
 # Create a VM
 qm create 9000 --name nfl.ubuntu2204.cloud.image --cpu host --cores 2 --sockets 1 --memory 2048 --net0 virtio,bridge=vmbr1
@@ -26,5 +26,6 @@ qm cloudinit dump 9000 user
 
 # create tempalte and a linked clone
 qm template 9000
-qm clone 9000 190 --name master-01
-qm start 190
+
+# qm clone 9000 190 --name master-01
+# qm start 190
