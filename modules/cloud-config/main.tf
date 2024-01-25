@@ -5,7 +5,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
   source_raw {
     data = <<EOF
 #cloud-config
-hostname: master-01
+preserve_hostname: true
 users:
   - name: ${var.default_user}
     groups:
