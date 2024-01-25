@@ -46,3 +46,5 @@ variable "default_datastore_id" { }
 variable "default_user" { }
 variable "default_password" { }
 variable "cloud_conf_id" { }
+variable "auth_user" { }
+variable "auth_user_password" { }

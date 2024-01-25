@@ -29,3 +29,5 @@ variable "default_user" {
 variable "default_password" {
   type = string
 }
+variable "auth_user" {}
+variable "auth_user_password" {}

@@ -14,8 +14,8 @@ terraform {
 provider "proxmox" {
   endpoint            = var.pm_url
   insecure            = true
-  username = "root@pam"
-  password = "000000"
+  username = var.auth_user
+  password = var.auth_user_password
 
   ssh {
     agent = true

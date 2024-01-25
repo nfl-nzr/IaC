@@ -5,24 +5,18 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
   source_raw {
     data = <<EOF
 #cloud-config
+hostname: master-01
 users:
-  - default
   - name: ${var.default_user}
     groups:
       - sudo
     shell: /bin/bash
     ssh_pwauth: true
-    plain_text_passwd: 0000
+    passwd: $6$rounds=4096$6CZpGL9a8PYqV$7uk/LLMhGJ2agqWQ3MWIRi2kK653Hn.T7SE7cYm7qLscSAtV6EI1MdHNfaWk9DuqaBre6QDtKRR679eSQMWiK.
     lock_passwd: false
     ssh_authorized_keys:
       - ${trimspace(data.local_file.ssh_public_key.content)}
     sudo: ALL=(ALL) NOPASSWD:ALL
-runcmd:
-    - apt update
-    - apt install -y qemu-guest-agent net-tools
-    - systemctl enable qemu-guest-agent
-    - systemctl start qemu-guest-agent
-    - echo "done" > /tmp/cloud-config.done
     EOF
     file_name = "cloud-config.yaml"
   }

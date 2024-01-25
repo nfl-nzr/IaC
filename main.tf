@@ -4,7 +4,9 @@ module "cloudinit" {
   default_user         = var.default_user
   pm_node              = var.pm_node
   default_datastore_id = var.default_datastore_id
-  pm_url = var.pm_url
+  pm_url               = var.pm_url
+  auth_user            = var.auth_user
+  auth_user_password   = var.auth_user_password
 }
 module "nodes" {
   source = "./modules/cluster"
@@ -19,5 +21,7 @@ module "nodes" {
   default_datastore_id = var.default_datastore_id
   default_user         = var.default_user
   default_password     = var.default_password
+  auth_user            = var.auth_user
+  auth_user_password   = var.auth_user_password
   cloud_conf_id        = module.cloudinit.cloud_conf_id
 }

@@ -7,3 +7,5 @@ variable "pm_url" {
 }
 variable "default_datastore_id" { }
 variable "default_user" { }
+variable "auth_user" { }
+variable "auth_user_password" { }
