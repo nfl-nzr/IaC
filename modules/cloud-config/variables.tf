@@ -3,9 +3,9 @@ variable "pm_node" {
   description = "Target node to create the vms on"
 }
 variable "pm_url" {
-  
+
 }
-variable "default_datastore_id" { }
-variable "default_user" { }
-variable "auth_user" { }
-variable "auth_user_password" { }
+variable "default_datastore_id" {}
+variable "default_user" {}
+variable "auth_user" {}
+variable "auth_user_password" {}

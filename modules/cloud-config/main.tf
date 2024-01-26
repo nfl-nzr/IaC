@@ -3,9 +3,8 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
   datastore_id = var.default_datastore_id
   node_name    = var.pm_node
   source_raw {
-    data = <<EOF
+    data      = <<EOF
 #cloud-config
-preserve_hostname: true
 users:
   - name: ${var.default_user}
     groups:
