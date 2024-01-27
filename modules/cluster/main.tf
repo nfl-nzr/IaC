@@ -21,8 +21,8 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   }
 
   clone {
-    vm_id        = var.pm_template
-    full         = false
+    vm_id = var.pm_template
+    full  = false
   }
 
   disk {
@@ -40,7 +40,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
       }
     }
 
-    user_data_file_id = var.cloud_conf_id
+    user_data_file_id   = var.cloud_conf_id
     vendor_data_file_id = proxmox_virtual_environment_file.vendor_config.id
   }
 
