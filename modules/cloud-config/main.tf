@@ -26,5 +26,5 @@ data "local_file" "ssh_public_key" {
 }
 
 output "cloud_conf_id" {
-  value = proxmox_virtual_environment_file.cloud_config.id
+  value = proxmox_virtual_environment_file.cloud_config
 }

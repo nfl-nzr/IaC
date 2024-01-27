@@ -11,19 +11,40 @@ variable "pm_api_token_secret" {
   type = string
 }
 
-variable "vm_configs" {
-  type = map(object({
-    name : string,
-    cores : number,
-    sockets : number,
-    memory : number,
-    ip_address : string,
-    disk : object({
-      size = string
-    })
-  }))
-  description = "List of vm configurations"
-}
+# variable "vm_config" {
+#   type = object({
+#     name : string,
+#     cores : number,
+#     sockets : number,
+#     memory : number,
+#     ip_address : string,
+#     disk : object({
+#       size = string
+#     })
+#   })
+#   description = "List of vm configurations"
+# }
+
+variable "name" {}
+variable "sockets" {}
+variable "cores" {}
+variable "memory" {}
+variable "ip_address" {}
+variable "size" {}
+
+# variable "vm_configs" {
+#   type = map(object({
+#     name : string,
+#     cores : number,
+#     sockets : number,
+#     memory : number,
+#     ip_address : string,
+#     disk : object({
+#       size = string
+#     })
+#   }))
+#   description = "List of vm configurations"
+# }
 
 variable "pm_node" {
   type        = string

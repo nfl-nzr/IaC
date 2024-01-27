@@ -1,6 +1,6 @@
 resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
-  for_each = var.vm_configs
-  name     = each.value.name
+  provider = proxmox
+  name     = var.name
   tags     = ["terraform"]
   started  = true
   on_boot  = true
@@ -13,11 +13,11 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   }
 
   cpu {
-    cores = each.value.cores
+    cores = var.cores
   }
 
   memory {
-    dedicated = each.value.memory
+    dedicated = var.memory
   }
 
   clone {
@@ -29,18 +29,19 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
     datastore_id = var.default_datastore_id
     file_format  = "raw"
     interface    = "scsi0"
-    size         = each.value.disk["size"]
+    size         = var.size
   }
 
   initialization {
     ip_config {
       ipv4 {
-        address = each.value.ip_address
+        address = var.ip_address
         gateway = var.default_gateway_ip
       }
     }
 
     user_data_file_id = var.cloud_conf_id
+    vendor_data_file_id = proxmox_virtual_environment_file.vendor_config.id
   }
 
   network_device {
@@ -49,5 +50,21 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
 
   operating_system {
     type = "l26"
+  }
+}
+resource "proxmox_virtual_environment_file" "vendor_config" {
+  content_type = "snippets"
+  datastore_id = var.default_datastore_id
+  node_name    = var.pm_node
+  source_raw {
+    data      = <<EOF
+#cloud-config
+
+hostname: ${var.name}
+
+# Update /etc/hosts file
+manage_etc_hosts: localhost
+    EOF
+    file_name = "${var.name}-vendor-config.yaml"
   }
 }
