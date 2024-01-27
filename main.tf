@@ -1,6 +1,11 @@
 module "cloudinit" {
   source = "./modules/cloud-config"
 
+  providers = {
+    local = local
+    proxmox = proxmox
+  }
+
   default_user         = var.default_user
   pm_node              = var.pm_node
   default_datastore_id = var.default_datastore_id

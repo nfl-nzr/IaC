@@ -1,4 +1,9 @@
+# Create a common cloudinit config that adds a user called nfl to sudoers group, adds ssh pub key specified in files/id_rsa.pub file.
+# User can also be added using virt-customize.
+
 resource "proxmox_virtual_environment_file" "cloud_config" {
+  provider = proxmox
+
   content_type = "snippets"
   datastore_id = var.default_datastore_id
   node_name    = var.pm_node
@@ -22,6 +27,7 @@ users:
 }
 
 data "local_file" "ssh_public_key" {
+  provider = local
   filename = "${path.root}/files/id_rsa.pub"
 }
 
