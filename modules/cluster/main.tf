@@ -5,7 +5,6 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   started  = true
   on_boot  = true
 
-
   node_name = var.pm_node
 
   agent {
