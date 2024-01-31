@@ -3,14 +3,6 @@ variable "pm_url" {
   description = "API URL of the proxmox instance to be managed"
 }
 
-variable "pm_api_token_id" {
-  type = string
-}
-
-variable "pm_api_token_secret" {
-  type = string
-}
-
 variable "name" {}
 variable "sockets" {}
 variable "cores" {}
@@ -38,6 +30,6 @@ variable "default_gateway_ip" {
 variable "default_datastore_id" {}
 variable "default_user" {}
 variable "default_password" {}
-variable "cloud_conf_id" {}
+# variable "cloud_conf_id" {}
 variable "auth_user" {}
 variable "auth_user_password" {}

@@ -4,7 +4,7 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.45.0"
     }
-    
+
     local = {
       source  = "hashicorp/local"
       version = "2.4.1"

@@ -1,4 +1,4 @@
-pm_api_url           = "<proxmox url>"
+pm_api_url           = "https://192.168.1.45:8006"
 pm_api_token_id      = "<proxmox token id>"
 pm_api_token_secret  = "<proxmox token secret>"
 pm_node              = "<proxmox node name>"
