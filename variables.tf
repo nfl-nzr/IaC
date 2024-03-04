@@ -23,3 +23,5 @@ variable "default_password" {
 }
 variable "auth_user" {}
 variable "auth_user_password" {}
+
+variable "aws_region" { }

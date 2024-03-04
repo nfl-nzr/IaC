@@ -55,7 +55,9 @@ resource "aws_instance" "ubuntu_vm_instance" {
   instance_type          = var.instance_type
   key_name               = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.network-security-group.id]
-  
+
+  user_data = file("${path.module}/files/user-data.sh")
+
   tags = {
     Name = var.instance_name
   }
