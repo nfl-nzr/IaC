@@ -9,6 +9,11 @@ terraform {
       source  = "hashicorp/local"
       version = "2.4.1"
     }
+
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.39.0"
+    }
   }
 }
 
@@ -22,4 +27,10 @@ provider "proxmox" {
   ssh {
     agent = true
   }
+}
+
+provider "aws" {
+
+  region = var.aws_region
+
 }
