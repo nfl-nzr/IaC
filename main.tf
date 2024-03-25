@@ -31,4 +31,5 @@ module "jump_server" {
   instance_type               = local.ec2_instances.jump_server.instance_type
   key_name                    = local.ec2_instances.jump_server.key_name
   network_security_group_name = local.ec2_instances.jump_server.network_security_group_name
+  allowed_ingress_cidrs       = local.ec2_instances.jump_server.allowed_ingress_cidrs
 }

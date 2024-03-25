@@ -1,3 +1,4 @@
+
 data "aws_ami" "ubuntu_focal" {
   most_recent = true
 
@@ -34,6 +35,30 @@ resource "aws_security_group" "network-security-group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    description = "Cloudflare HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ingress_cidrs
+  }
+
+  ingress {
+    description = "Cloudflare HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ingress_cidrs
+
+  }
 
   ingress {
     description = "Wireguard"
@@ -61,6 +86,13 @@ resource "aws_instance" "ubuntu_vm_instance" {
   tags = {
     Name = var.instance_name
   }
+}
+
+resource "local_file" "ansible_inventory" {
+  content = templatefile("${path.module}/templates/inventory.tpl", {
+    instance_ip = aws_instance.ubuntu_vm_instance.public_ip
+  })
+  filename = "/home/nfl/lab/ckad/jump_server_hosts.ini"
 }
 
 output "instance_public_ip" {
